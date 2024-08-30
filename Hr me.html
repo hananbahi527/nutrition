@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hr Me</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #9EB384;
+            color: #f8f8f8;
+            overflow-x: hidden;
+        }
+        header {
+            background-color: #607561;
+            color: #f8f8f8;
+            padding: 20px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        header .logo {
+            font-size: 32px;
+            font-weight: bold;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: #B5C99A ;
+            text-decoration: none;
+            position: relative;
+            padding: 5px 0;
+        }
+        nav ul li a::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background: #525c4a;
+            transition: width 0.3s;
+        }
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        section {
+            display: none;
+            padding: 20px;
+            margin: 20px 0;
+            background-color: #607561;
+            color: #f8f8f8;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        
+        section.active {
+            display: block;
+            animation: fadeIn 1s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        h1, h2 {
+            text-align: center;
+            color: #e0e0e0;
+        }
+        h5 {
+            text-align: center;
+            color: #B6C7AA;
+            font-size: 20px;
+            display: inline-block;
+            margin: 0;
+            padding: 0;
+        }
+        form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        form label {
+            display: block;
+            margin-top: 10px;
+        }
+        form input, form textarea, form button, form select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            background-color: #606C5D;
+            border: 1px solid #606C5D;
+            color: #f8f8f8;
+        }
+        form button {
+            background-color: #8d9c89;
+            border: none;
+            cursor: pointer;
+        }
+        form button:hover {
+            background-color: #4f5c54;
+        }
+        .image-slider-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 70vh;
+        }
+        .image-slider {
+            height: 300px; 
+            width: 600px;
+            background-color: #444;
+            position: relative;
+            overflow: hidden;
+        }
+        .image-slider img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            animation: slide 9s infinite;
+        }
+       
+        .image-slider img:nth-child(1) {
+            animation-delay: 0s;
+        }
+        .image-slider img:nth-child(2) {
+            animation-delay: 3s;
+        }
+        .image-slider img:nth-child(3) {
+            animation-delay: 6s;
+        }
+        @keyframes slide {
+            0%, 100% {
+                opacity: 0;
+            }
+            10%, 90% {
+                opacity: 1;
+            }
+        }
+        .team {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .team .member {
+            flex: 1 1 calc(25% - 20px);
+            margin: 10px;
+            padding: 20px;
+            background-color: #606C5D;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .member h3 {
+            margin-top: 0;
+            color: #B6C7AA;
+        }
+        .shapes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        .shape {
+            position: absolute;
+            background: #2e4421;
+            border-radius: 50%;
+            animation: move 20s linear infinite;
+        }
+        .shape1 {
+            width: 100px;
+            height: 100px;
+            top: 10%;
+            left: 20%;
+            animation-duration: 15s;
+        }
+        .shape2 {
+            width: 150px;
+            height: 150px;
+            top: 50%;
+            left: 70%;
+            animation-duration: 25s;
+        }
+        .shape3 {
+            width: 200px;
+            height: 200px;
+            top: 70%;
+            left: 30%;
+            animation-duration: 35s;
+        }
+        .shape4 {
+            width: 250px;
+            height: 250px;
+            top: 20%;
+            left: 80%;
+            animation-duration: 45s;
+        }
+        @keyframes move {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-50px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="shapes">
+        <div class="shape shape1"></div>
+        <div class="shape shape2"></div>
+        <div class="shape shape3"></div>
+        <div class="shape shape4"></div>
+    </div>
+    <header>
+        <div class="logo">Hr Me</div>
+        <nav>
+            <ul>
+                <li><a href="#" onclick="showSection('home')">Home</a></li>
+                <li><a href="#" onclick="showSection('about')">About Us</a></li>
+                <li><a href="#" onclick="showSection('donate')">Donate</a></li>
+                <li><a href="#" onclick="showSection('inventory')">Inventory</a></li>
+                <li><a href="#" onclick="showSection('meals')">Healthy Meals</a></li>
+                <li><a href="#" onclick="showSection('alerts')">Expiration Alerts</a></li>
+                <li><a href="#" onclick="showSection('contact')">Contact</a></li>
+                <li><a href="#" onclick="showSection('registration')">Registration</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="active">
+        <h1>Welcome to Hr Me</h1>
+        <p>Our mission is to reduce food waste, help people donate food, and create new meals.</p>
+        
+        <div class="image-slider-container">
+            <div class="image-slider">
+                <img src="3.jpg" alt="Slide 1">
+                <img src="666.jpg" alt="Slide 2">
+                <img src="46464.png" alt="Slide 3">
+            </div>
+        </div>
+        
+            <div class="slider-text">
+            <h2>Discover Our Mission</h2>
+            <p>Join us in making a difference by reducing food waste and promoting healthy eating habits.</p>
+        </div><hr>
+        <div>
+            <h2>Food Waste</h2>
+            <h4>The problem of food waste is a global problem facing all societies, resulting in a lot of damage and causing many other problems that cause double damage</h4>
+           <img src="download (1).jfif" alt="img">
+           <p>According to the Food and Agriculture Organization (FAO), about 1.3 
+            billion tons of food is wasted each year of the total amount of
+            food produced in the world It estimates that if food waste was 
+            reduced by 25%, enough food could be saved to feed  All people who 
+            suffer from hunger around the world 
+            </p>      
+        </div>
+        <hr>
+        <div>
+            <h2>Healthy Food </h2>
+            <h4>Eating a variety of colorful fruits and vegetables can boost your overall health.</h4>
+            <h4>Healthy food is crucial because it provides essential nutrients that support bodily functions and prevent chronic diseases.</h4>
+
+             <img src="download (2).jfif" alt="img">
+             <p>Consuming a diet rich in fruits, vegetables, whole grains, and lean proteins is vital for maintaining overall health. These foods are packed with essential vitamins, minerals, and antioxidants that help prevent chronic diseases, improve energy levels, and support a strong immune system. For instance, the fiber in whole grains aids digestion, while antioxidants in berries can reduce inflammation. A balanced diet not only enhances physical well-being but also supports mental health, contributing to a higher quality of life.</p>
+        </div>
+        
+    </section>
+
+
+    <section id="about">
+        <h2>About Us</h2>
+        <h3>We aim to stop food waste and help those in need. Donate now to make a difference!</h3>
+        <p>Our mission is to reduce food waste, help those who need food and help with food handling.</p>
+        <h5>Rahma Hendam</h5><br>
+        <h5>Hanan Bahi</h5><br>
+        <h5>Eman Abdelhamid</h5><br>
+        <h5>Menna Rabei</h5>
+    </section>
+
+    <section id="donate">
+        <h2>Donate</h2>
+        <form id="donation-form">
+            <label for="donor-name">Name:</label>
+            <input type="text" id="donor-name" name="donor-name">
+            <label for="donor-email">Email:</label>
+            <input type="email" id="donor-email" name="donor-email">
+            <label for="donation-amount">Donation Amount:</label>
+            <input type="number" id="donation-amount" name="donation-amount">
+            <button type="submit">Donate</button>
+        </form>
+        <div id="donation-message" style="display: none;">
+            <p>Thank you for your donation! Your donation form has been successfully submitted.</p>
+        </div>
+    </section>
+
+    <section id="inventory">
+        <h2>Inventory</h2>
+        <form id="inventory-form">
+            <label for="product-name">Product Name:</label>
+            <input type="text" id="product-name" name="product-name">
+            <label for="product-description">Product Description:</label>
+            <textarea id="product-description" name="product-description"></textarea>
+            <button type="submit">Add Product</button>
+        </form>
+        <div class="team" id="product-list">
+            <div class="member">
+                <h3>Product 1</h3>
+                <p>Description of product 1.</p>
+            </div>
+            <div class="member">
+                <h3>Product 2</h3>
+                <p>Description of product 2.</p>
+            </div>
+            <div class="member">
+                <h3>Product 3</h3>
+                <p>Description of product 3.</p>
+            </div>
+            <div class="member">
+                <h3>Product 4</h3>
+                <p>Description of product 4.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="meals">
+        <h2>Healthy Meals</h2>
+        <p>Explore our collection of healthy meals made from your list</p>
+    </section>
+
+    <section id="alerts">
+        <h2>Expiration Alerts</h2>
+        <form id="alerts-form">
+            <label for="food-item">Food Item:</label>
+            <input type="text" id="food-item" name="food-item">
+            <label for="expiry-date">Expiry Date:</label>
+            <input type="date" id="expiry-date" name="expiry-date">
+            <button type="submit">Set Alert</button>
+        </form>
+        <div id="alerts-list"></div>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <form>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email">
+            <label for="message">Message:</label>
+            <textarea id="message" name="message"></textarea>
+            <button type="submit">Send</button>
+        </form>
+    </section>
+
+    <section id="registration">
+        <h2>Registration</h2>
+        <form id="registration-form">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password">
+            <label for="confirm-password">Confirm Password:</label>
+            <input type="password" id="confirm-password" name="confirm-password">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email">
+            <label for="family-members">Number of Family Members:</label>
+            <input type="number" id="family-members" name="family-members">
+            <label for="special-needs">Special Needs:</label>
+            <textarea id="special-needs" name="special-needs"></textarea>
+            <button type="submit">Register</button>
+        </form>
+        <div id="registration-message" style="display: none;">
+            <p>Registration successful! Thank you for registering.</p>
+            <button onclick="showSection('home')">OK</button>
+        </div>
+    </section>
+
+    <script>
+        function showSection(sectionId) {
+            var sections = document.querySelectorAll('section');
+            sections.forEach(function (section) {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionId).classList.add('active');
+        }
+
+        document.getElementById('donation-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            document.getElementById('donation-message').style.display = 'block';
+        });
+
+        document.getElementById('registration-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            document.getElementById('registration-message').style.display = 'block';
+        });
+
+        document.getElementById('inventory-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            var productName = document.getElementById('product-name').value;
+            var productDescription = document.getElementById('product-description').value;
+            var productList = document.getElementById('product-list');
+            var newProduct = document.createElement('div');
+            newProduct.classList.add('member');
+            newProduct.innerHTML = `<h3>${productName}</h3><p>${productDescription}</p>`;
+            productList.appendChild(newProduct);
+            document.getElementById('inventory-form').reset();
+        });
+
+        document.getElementById('alerts-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            var foodItem = document.getElementById('food-item').value;
+            var expiryDate = document.getElementById('expiry-date').value;
+            var alertsList = document.getElementById('alerts-list');
+            var newAlert = document.createElement('div');
+            newAlert.innerHTML = `<p>${foodItem} expires on ${expiryDate}</p>`;
+            alertsList.appendChild(newAlert);
+            document.getElementById('alerts-form').reset();
+        });
+    </script>
+</body>
+</html>
+
+
+
+            
+            
